@@ -23,6 +23,10 @@ export default class {
     this._timeTimer = setInterval(this._performTimeLoop.bind(this), 3000);
   }
 
+  stop() {
+    clearInterval(this._timeTimer);
+  }
+
   _performTimeLoop() {
     this._timeEndpoint((status: StatusAnnouncement) => {
       if (!status.error) {

@@ -156,6 +156,7 @@ export default class {
       Object.keys(this._presenceChannels).length === 0 &&
       Object.keys(this._channelGroups).length === 0 &&
       Object.keys(this._presenceChannelGroups).length === 0) {
+      this._reconnectionManager.stop();
       this._timetoken = 0;
       this._region = null;
     }
@@ -183,6 +184,7 @@ export default class {
   disconnect() {
     this._stopSubscribeLoop();
     this._stopHeartbeatTimer();
+    this._reconnectionManager.stop();
   }
 
   _registerHeartbeatTimer() {
